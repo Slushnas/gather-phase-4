@@ -6,8 +6,8 @@
     "drop-db": "node ./bin/drop-database",
     "seed-db": "node ./bin/seed-database",
     "start": "node ./bin/www",
-    "test": " sh bin\\mocha-test && sh bin\\wdio-test",
-    "test:mocha": " sh bin\\mocha-test || exit 0"
+    "test": "sh ./bin/mocha-test && sh ./bin/wdio-test",
+    "test:mocha": "sh ./bin/mocha-test || exit 0"
   },
   "dependencies": {
     "body-parser": "~1.17.1",

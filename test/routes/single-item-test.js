@@ -14,28 +14,18 @@ describe('Server path: /items/:id', () => {
   afterEach(diconnectDatabase);
 
   describe('GET', () => {
-    it('renders an items title', async () => {
+    it('renders an items title, description, and imageUrl', async () => {
         const item = await seedItemToDatabase();
+
         const response = await request(app)
           .get(`/items/${item._id}`);
+        
         assert.include(parseTextFromHTML(response.text, '#item-title'), item.title,
-         'The items title was not found on the page.');
-    });
-
-    it('renders an items description', async () => {
-      const item = await seedItemToDatabase();
-      const response = await request(app)
-        .get(`/items/${item._id}`);
-      assert.include(parseTextFromHTML(response.text, '#item-description'), item.description,
-       'The items description was not found on the page.');
-    });
-
-    it('renders an items imageUrl', async () => {
-      const item = await seedItemToDatabase();
-      const response = await request(app)
-        .get(`/items/${item._id}`);
-      assert.include(parseAttributeFromHTML(response.text, '#item-imageUrl', 'src'), item.imageUrl,
-       'The items imageUrl was not found on the page.');
+          'The items title was not found on the page.');
+        assert.include(parseTextFromHTML(response.text, '#item-description'), item.description,
+          'The items description was not found on the page.');
+        assert.include(parseAttributeFromHTML(response.text, '#item-imageUrl', 'src'), item.imageUrl,
+          'The items imageUrl was not found on the page.');
     });
   });
 });

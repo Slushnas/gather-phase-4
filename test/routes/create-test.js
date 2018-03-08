@@ -33,7 +33,7 @@ describe('Server path: /items/create', () => {
     };
 
     it('creates and saves a new item', async () => {
-      const respone = await PostNewItem();
+      await PostNewItem();
       const createdItem = await Item.findOne(itemToCreate);
       assert.isOk(createdItem, 'Item was not created successfully in the database');
     });
